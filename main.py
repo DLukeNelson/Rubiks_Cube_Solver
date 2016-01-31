@@ -1,8 +1,6 @@
 from corner import Corner
 from edge import Edge
 from face import Face
-
-
 '''
 BIG PLACE TO PUT THE INPUT STUFF
 input gets 6 arrays of 8 elements. each element is a string "color"
@@ -24,12 +22,30 @@ back -> red
 left -> blue
 right -> green
 '''
+cornerA = Corner(top[0], back[2], left[0])
+cornerB = Corner(top[2], back[0], right[2])
+cornerC = Corner(top[7], front[2], right[0])
+cornerD = Corner(top[5], front[0], left[2])
+cornerE = Corner(bottom[0], front[5], left[7])
+cornerF = Corner(bottom[2], front[7], right[5])
+cornerG = Corner(bottom[7], back[5], right[7])
+cornerH = Corner(bottom[7], back[7], left[5])
+
+edgeA = Edge(top[1], back[1])
+edgeB = Edge(top[4], right[1])
+edgeC = Edge(top[6], front[1])
+edgeD = Edge(top[3], left[1])
+edgeE = Edge(bottom[1], front[6])
+edgeF = Edge(bottom[4], right[6])
+edgeG = Edge(bottom[6], back[6])
+edgeH = Edge(bottom[3], left[6])
+edgeI = Edge(front[3], left[4])
+edgeJ = Edge(front[4], right[3])
+edgeK = Edge(back[3], right[4])
+edgeL = Edge(back[4], left[3])
 
 '''
-The following section initializes a default (solved) cube.
-'''
-
-
+#The following section initializes a default (solved) cube.
 cornerA = Corner('white','red', 'blue')
 cornerB = Corner('white','red', 'green')
 cornerC = Corner('white','orange', 'green')
@@ -51,7 +67,7 @@ edgeI = Edge('orange', 'blue')
 edgeJ = Edge('orange', 'green')
 edgeK = Edge('red', 'green')
 edgeL = Edge('red', 'blue')
-
+'''
 white = Face('white', cornerA, cornerB, cornerC, cornerD, edgeA, edgeB, edgeC, edgeD)
 yellow = Face('yellow', cornerE, cornerF, cornerG, cornerH, edgeE, edgeF, edgeG, edgeH)
 orange = Face('orange', cornerD, cornerC, cornerF, cornerE, edgeC, edgeJ, edgeE, edgeI)
@@ -64,8 +80,10 @@ Faces = [white, yellow, orange, red, green, blue]
 '''
 Use this space to test anything:
 '''
-blue.rotateCW(Faces)
-green.rotateCW(Faces)
+white.rotateCCW(Faces)
+
+
+
 
 
 
@@ -83,17 +101,3 @@ for i in Faces:
         for k in j.getColors():
             print(k, end=' ')
         print()
-
-''' Finite State Machine
-State == 0 is beginning the cube
-State == 1 is when white has four corners solved
-State == 2 is when white is solved
-State == 3 is when the middle is solved
-State == 4 is when the four yellow corners are in the right place
-State == 5 is when the four yellow corners are rotated correctly
-State == 6 is when a first edge is solved
-State == 7 is when a second edge is solved
-State == 8 is done
-'''
-
-# while State == 7:
