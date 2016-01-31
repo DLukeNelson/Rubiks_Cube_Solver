@@ -16,9 +16,10 @@ public class RubiksCubeCameraCapture extends JFrame {
     JButton execute_action = new JButton("Do Magic"),
             open_action = new JButton("Open Stuff");
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         RubiksCubeCameraCapture rccc
                 = new RubiksCubeCameraCapture("Rubiks Cube Camera Capture");
+        ImageAnalyzer ia = new ImageAnalyzer();
     }
 
     public RubiksCubeCameraCapture(String title) {
@@ -44,9 +45,10 @@ public class RubiksCubeCameraCapture extends JFrame {
 
         open_action.addActionListener(new ActionListenerImpl());
     }
+    
+    
 
-    protected ImageIcon createImageIcon(String path,
-            String description) {
+    protected ImageIcon createImageIcon(String path,String description) {
         java.net.URL imgURL = getClass().getResource(path);
         if (imgURL != null) {
             return new ImageIcon(imgURL, description);
