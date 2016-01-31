@@ -54,7 +54,7 @@ public class ImageAnalyzer {
                     int g = (rgb >> 8) & 0xFF;
                     int b = (rgb) & 0xFF;
                     Color.RGBtoHSB(r, g, b, hsb);
-                    if (hsb[1] < 0.2 && hsb[2] < 0.9) {
+                    if (hsb[1] < 0.2 && hsb[2] <= 1) {
                         outimage.setRGB(i, j, Color.white.getRGB());
                     }
                 }
@@ -71,7 +71,7 @@ public class ImageAnalyzer {
                     int b = (rgb) & 0xFF;
                     Color.RGBtoHSB(r, g, b, hsb);
                     float deg = hsb[0] * 360;
-                    if (deg >= 15 && deg < 35) {
+                    if (deg >= 15 && deg < 50 &&(hsb[2] > 0.4 && hsb[1] > 0.5)) {
                         outimage.setRGB(i, j, Color.orange.getRGB());
                     }
                 }
@@ -88,7 +88,7 @@ public class ImageAnalyzer {
                     int b = (rgb) & 0xFF;
                     Color.RGBtoHSB(r, g, b, hsb);
                     float deg = hsb[0] * 360;
-                    if (deg >= 210 && deg < 270) {
+                    if (deg >= 210 && deg < 270 &&(hsb[2] > 0.2)) {
                         outimage.setRGB(i, j, Color.blue.getRGB());
                     }
                 }
@@ -104,8 +104,8 @@ public class ImageAnalyzer {
                     int b = (rgb) & 0xFF;
                     Color.RGBtoHSB(r, g, b, hsb);
                     float deg = hsb[0] * 360;
-                    if (deg >=  30 && deg <  90) {
-                        outimage.setRGB(i, j, Color.yellow.getRGB());
+                    if (deg >=  50 && deg <  90 &&(hsb[2] > 0.5)) {
+                        outimage.setRGB(i, j, Color.gray.getRGB());
                     }
                 }
             }
@@ -113,14 +113,13 @@ public class ImageAnalyzer {
             for (int i = 0; i < inimage.getHeight(); i++) {
                 for (int j = 0; j < inimage.getWidth(); j++) {
                     int rgb = inimage.getRGB(i, j);
-                    //System.out.println(rgb);
                     float hsb[] = new float[3];
                     int r = (rgb >> 16) & 0xFF;
                     int g = (rgb >> 8) & 0xFF;
                     int b = (rgb) & 0xFF;
                     Color.RGBtoHSB(r, g, b, hsb);
                     float deg = hsb[0] * 360;
-                    if ((deg >=   0 && deg <  30)||(deg > 330)) {
+                    if (((deg > 0&&deg < 15)||(deg > 330))&&(hsb[2] < 1 && hsb[2] > 0.5)) {
                         outimage.setRGB(i, j, Color.red.getRGB());
                     }
                 }
@@ -136,8 +135,8 @@ public class ImageAnalyzer {
                     int b = (rgb) & 0xFF;
                     Color.RGBtoHSB(r, g, b, hsb);
                     float deg = hsb[0] * 360;
-                    if (deg >=  90 && deg < 150) {
-                        outimage.setRGB(i, j, Color.green.getRGB());
+                    if ((deg >=  90 && deg < 150)&&(hsb[2] > 0.2)) {
+                        outimage.setRGB(i, j, Color.pink.getRGB());
                     }
                 }
             }
