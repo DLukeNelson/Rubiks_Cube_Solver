@@ -49,13 +49,12 @@ class Application(Frame):
         self.update_cube_image()
 
     def create_widgets(self):
-        """" Create 3 buttons that do something """
 
         # Create the reset button
         self.buttonReset = Button(self)
         self.buttonReset.grid(row = 0, column = 0)
         self.buttonReset.configure(text = "Reset")
-        # self.buttonReset["command"] = self.recreate
+        self.buttonReset["command"] = self.recreate
 
         # Create the solve button
         self.buttonSolve = Button(self)
@@ -105,36 +104,15 @@ class Application(Frame):
         self.stepLabel.grid(row = 7, column = 1)
         self.stepLabel.configure(text = "hERE i AM!")
 
-    # def recreate(self):
-    #     CURRENTFACE= [0, 0, 0, 0, 0, 0, 0, 0, 0]
-    #     WHITEFACE  = [0, 0, 0, 0, 0, 0, 0, 0, 0]
-    #     YELLOWFACE = [1, 1, 1, 1, 1, 1, 1, 1, 1]
-    #     ORANGEFACE = [2, 2, 2, 2, 2, 2, 2, 2, 2]
-    #     REDFACE    = [3, 3, 3, 3, 3, 3, 3, 3, 3]
-    #     GREENFACE  = [4, 4, 4, 4, 4, 4, 4, 4, 4]
-    #     BLUEFACE   = [5, 5, 5, 5, 5, 5, 5, 5, 5]
-    #     self.resetClick    = 0
-    #     self.solveClick    = 0
-    #     self.buttonA0click = 0
-    #     self.buttonA1click = 0
-    #     self.buttonA2click = 0
-    #     self.buttonB0click = 0
-    #     self.buttonB2click = 0
-    #     self.buttonC0click = 0
-    #     self.buttonC1click = 0
-    #     self.buttonC2click = 0
-    #     self.FACEVALUE = 0
-    #     self.buttonA0.configure(bg = COLORS[0])
-    #     self.buttonA1.configure(bg = COLORS[0])
-    #     self.buttonA2.configure(bg = COLORS[0])
-    #     self.buttonB0.configure(bg = COLORS[0])
-    #     self.buttonB1.configure(bg = COLORS[0])
-    #     self.buttonB2.configure(bg = COLORS[0])
-    #     self.buttonC0.configure(bg = COLORS[0])
-    #     self.buttonC1.configure(bg = COLORS[0])
-    #     self.buttonC2.configure(bg = COLORS[0])
-    #     self.topLabel.configure(text = "White Face")
-    #     self.frtLabel.configure(text = "Red Face") :)
+    def recreate(self):
+        CURRENTFACE= [0, 0, 0, 0, 0, 0, 0, 0, 0]
+        WHITEFACE  = [0, 0, 0, 0, 0, 0, 0, 0, 0]
+        YELLOWFACE = [1, 1, 1, 1, 1, 1, 1, 1, 1]
+        ORANGEFACE = [2, 2, 2, 2, 2, 2, 2, 2, 2]
+        REDFACE    = [3, 3, 3, 3, 3, 3, 3, 3, 3]
+        GREENFACE  = [4, 4, 4, 4, 4, 4, 4, 4, 4]
+        BLUEFACE   = [5, 5, 5, 5, 5, 5, 5, 5, 5]
+
 
     def sendToSolve(self):
         self.reset_cube()
@@ -170,6 +148,12 @@ class Application(Frame):
             text_file.write("%s " % str(BLUEFACE[i]))
         text_file.write("\n")
         text_file.close()
+
+
+        # while notfound:
+        #     with open("instructions.txt") as file:
+
+
 
     def reset_cube(self):
         print(self.FACEVALUE)
@@ -217,7 +201,6 @@ class Application(Frame):
                 GREENFACE[i] = CURRENTFACE[i]
             for i in range(9):
                 CURRENTFACE[i] = BLUEFACE[i]
-
 
 
         if self.FACEVALUE == 0 :
@@ -351,7 +334,6 @@ class Application(Frame):
         self.buttonC2["bg"] = COLORS[self.buttonC2click]
         CURRENTFACE[8] += 1
         if CURRENTFACE[8] == 6: CURRENTFACE[8] = 0
-
 
 root = Tk()
 root.title("The Rubiks Game")
