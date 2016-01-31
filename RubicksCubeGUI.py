@@ -61,7 +61,8 @@ class Application(Frame):
         self.buttonSolve.grid(row = 0, column = 2)
         self.buttonSolve.configure(text = "Solve")
         self.solveState = 0
-        self.buttonSolve["command"] = self.sendToSolve
+        if self.solveState != 1:
+            self.buttonSolve["command"] = self.sendToSolve
 
         # Create the prev button
         self.buttonPrev = Button(self)
@@ -115,43 +116,49 @@ class Application(Frame):
 
 
     def sendToSolve(self):
+        self.solveState = 1
         self.reset_cube()
         text_file = open("UserData.txt", "w")
         for i in range(0,4):
-            text_file.write("%s " % str(WHITEFACE[i]))
+            text_file.write("%s " % str(COLORS[WHITEFACE[i]]))
         for i in range(5,9):
-            text_file.write("%s " % str(WHITEFACE[i]))
+            text_file.write("%s " % str(COLORS[WHITEFACE[i]]))
         text_file.write("\n")
         for i in range(0,4):
-            text_file.write("%s " % str(YELLOWFACE[i]))
+            text_file.write("%s " % str(COLORS[YELLOWFACE[i]]))
         for i in range(5,9):
-            text_file.write("%s " % str(YELLOWFACE[i]))
+            text_file.write("%s " % str(COLORS[YELLOWFACE[i]]))
         text_file.write("\n")
         for i in range(0,4):
-            text_file.write("%s " % str(ORANGEFACE[i]))
+            text_file.write("%s " % str(COLORS[ORANGEFACE[i]]))
         for i in range(5,9):
-            text_file.write("%s " % str(ORANGEFACE[i]))
+            text_file.write("%s " % str(COLORS[ORANGEFACE[i]]))
         text_file.write("\n")
         for i in range(0,4):
-            text_file.write("%s " % str(REDFACE[i]))
+            text_file.write("%s " % str(COLORS[REDFACE[i]]))
         for i in range(5,9):
-            text_file.write("%s " % str(REDFACE[i]))
+            text_file.write("%s " % str(COLORS[REDFACE[i]]))
         text_file.write("\n")
         for i in range(0,4):
-            text_file.write("%s " % str(GREENFACE[i]))
+            text_file.write("%s " % str(COLORS[GREENFACE[i]]))
         for i in range(5,9):
-            text_file.write("%s " % str(GREENFACE[i]))
+            text_file.write("%s " % str(COLORS[GREENFACE[i]]))
         text_file.write("\n")
         for i in range(0,4):
-            text_file.write("%s " % str(BLUEFACE[i]))
+            text_file.write("%s " % str(COLORS[BLUEFACE[i]]))
         for i in range(5,9):
-            text_file.write("%s " % str(BLUEFACE[i]))
+            text_file.write("%s " % str(COLORS[BLUEFACE[i]]))
         text_file.write("\n")
         text_file.close()
 
-
-        # while notfound:
-        #     with open("instructions.txt") as file:
+        notfound = True
+        self.thingsToDo = []
+        while notfound:
+            with open("instructions.txt") as file:
+                for line in file:
+                    self.thingsToDo.append(line.strip())
+                notfound = False
+        print (self.thingsToDo)
 
 
 
