@@ -1,4 +1,5 @@
 from tkinter import*
+from main import *
 import sys
 
 COLORS     = ['white', 'yellow', 'orange', 'red', 'green', 'blue']
@@ -97,12 +98,19 @@ class Application(Frame):
 
         # Create the steps label
         self.stepLabel = Label(self)
-        self.stepLabel.grid(row = 7, column = 1)
-        self.stepLabel.configure(text = "hERE i AM!")
+        self.stepLabel.grid(row = 7, column = 0)
 
+        # Create the steps label
+        self.stepLabe2 = Labe1(self)
+        self.stepLabe2.grid(row = 7, column = 1)
+
+        # Create the steps label
+        self.stepLabe3 = Labe2(self)
+        self.stepLabe3.grid(row = 7, column = 1)
 
     def sendToSolve(self):
         SOLVESTATE = 1
+
         self.buttonSolve["command"] = " "
         self.reset_cube()
         text_file = open("UserData.txt", "w")
@@ -138,6 +146,8 @@ class Application(Frame):
         text_file.write("\n")
         text_file.close()
 
+        main()
+
         notfound = True
         self.thingsToDo = []
         while notfound:
@@ -145,6 +155,12 @@ class Application(Frame):
                 for line in file:
                     self.thingsToDo.append(line.strip())
                 notfound = False
+        currThing = 0
+        for i in range(len(self.thingsToDo)):
+            if currThing == 0: self.label1(type = str(self.thingsToDo(i)))
+            if currThing == 1: self.label2(type = str(self.thingsToDo(i)))
+            if currThing == 2: self.label3(type = str(self.thingsToDo(i)))
+            if currThing == 3: currThing = 0
 
 
     def reset_cube(self):
