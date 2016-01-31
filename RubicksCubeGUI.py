@@ -9,6 +9,7 @@ ORANGEFACE = [2, 2, 2, 2, 2, 2, 2, 2, 2]
 REDFACE    = [3, 3, 3, 3, 3, 3, 3, 3, 3]
 GREENFACE  = [4, 4, 4, 4, 4, 4, 4, 4, 4]
 BLUEFACE   = [5, 5, 5, 5, 5, 5, 5, 5, 5]
+SOLVESTATE = 0
 
 class Application(Frame):
     """A GUI application with three buttons"""
@@ -50,19 +51,13 @@ class Application(Frame):
 
     def create_widgets(self):
 
-        # Create the reset button
-        self.buttonReset = Button(self)
-        self.buttonReset.grid(row = 0, column = 0)
-        self.buttonReset.configure(text = "Reset")
-        self.buttonReset["command"] = self.recreate
 
         # Create the solve button
         self.buttonSolve = Button(self)
         self.buttonSolve.grid(row = 0, column = 2)
         self.buttonSolve.configure(text = "Solve")
-        self.solveState = 0
-        if self.solveState != 1:
-            self.buttonSolve["command"] = self.sendToSolve
+
+        if SOLVESTATE != 1: self.buttonSolve["command"] = self.sendToSolve
 
         # Create the prev button
         self.buttonPrev = Button(self)
@@ -105,18 +100,10 @@ class Application(Frame):
         self.stepLabel.grid(row = 7, column = 1)
         self.stepLabel.configure(text = "hERE i AM!")
 
-    def recreate(self):
-        CURRENTFACE= [0, 0, 0, 0, 0, 0, 0, 0, 0]
-        WHITEFACE  = [0, 0, 0, 0, 0, 0, 0, 0, 0]
-        YELLOWFACE = [1, 1, 1, 1, 1, 1, 1, 1, 1]
-        ORANGEFACE = [2, 2, 2, 2, 2, 2, 2, 2, 2]
-        REDFACE    = [3, 3, 3, 3, 3, 3, 3, 3, 3]
-        GREENFACE  = [4, 4, 4, 4, 4, 4, 4, 4, 4]
-        BLUEFACE   = [5, 5, 5, 5, 5, 5, 5, 5, 5]
-
 
     def sendToSolve(self):
-        self.solveState = 1
+        SOLVESTATE = 1
+        self.buttonSolve["command"] = " "
         self.reset_cube()
         text_file = open("UserData.txt", "w")
         for i in range(0,4):
@@ -158,12 +145,9 @@ class Application(Frame):
                 for line in file:
                     self.thingsToDo.append(line.strip())
                 notfound = False
-        print (self.thingsToDo)
-
 
 
     def reset_cube(self):
-        print(self.FACEVALUE)
         self.FACEVALUE += 1
         if self.FACEVALUE == 6: self.FACEVALUE = 0
         if self.FACEVALUE == 0:
