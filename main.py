@@ -64,6 +64,8 @@ Faces = [white, yellow, orange, red, green, blue]
 '''
 Use this space to test anything:
 '''
+blue.rotateCW(Faces)
+green.rotateCW(Faces)
 
 
 
@@ -81,3 +83,17 @@ for i in Faces:
         for k in j.getColors():
             print(k, end=' ')
         print()
+
+''' Finite State Machine
+State == 0 is beginning the cube
+State == 1 is when white has four corners solved
+State == 2 is when white is solved
+State == 3 is when the middle is solved
+State == 4 is when the four yellow corners are in the right place
+State == 5 is when the four yellow corners are rotated correctly
+State == 6 is when a first edge is solved
+State == 7 is when a second edge is solved
+State == 8 is done
+'''
+
+# while State == 7:

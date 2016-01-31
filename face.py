@@ -23,7 +23,7 @@ class Face:
             for i in range(4):
                 self._clist[i].rotate(0, 1)
             for i in range(2):
-                self._elist[2*i+1].switch()
+                self._elist[2*i].switch()
         #rotate the corners within the list.
         swap = self._clist[3]
         self._clist[3] = self._clist[2]
@@ -49,8 +49,6 @@ class Face:
         else:
             for i in range(4):
                 self._clist[i].rotate(0, 1)
-            for i in range(2):
-                self._elist[2*i+1].switch()
 
         # rotate the corners within the list.
         swap = self._clist[0]
